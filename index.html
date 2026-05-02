@@ -3,1096 +3,737 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RestauDesign — Design for Restaurants</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>RestauDesign — Le Design qui Booste Vos Ventes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lime: #B8FF00;
-    --lime-dim: rgba(184,255,0,0.12);
-    --lime-border: rgba(184,255,0,0.25);
-    --black: #080808;
-    --dark: #111111;
-    --card: #161616;
-    --white: #FFFFFF;
-    --muted: rgba(255,255,255,0.45);
-    --muted2: rgba(255,255,255,0.15);
+    --green: #7CFC00;
+    --dark: #0a0a0a;
+    --cream: #f5f0e8;
+    --teal: #1a5c4a;
+    --gold: #c9a84c;
+    --white: #ffffff;
   }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
+    background: var(--dark);
     color: var(--white);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* ── CURSOR ── */
-  .cursor {
-    position: fixed;
-    width: 12px; height: 12px;
-    background: var(--lime);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--lime);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
-    opacity: 0.5;
   }
 
   /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 60px;
-    background: rgba(8,8,8,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--muted2);
+    padding: 18px 40px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124,252,0,0.15);
   }
 
-  .nav-logo {
+  .logo-nav {
+    display: flex; align-items: center; gap: 10px;
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 1.3rem; font-weight: 900;
     color: var(--white);
     text-decoration: none;
   }
-  .nav-logo span { color: var(--lime); }
 
-  .nav-links {
-    display: flex; gap: 36px; list-style: none;
+  .logo-badge {
+    width: 38px; height: 38px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: var(--dark);
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 900;
+    color: var(--green);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -1px;
   }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--lime); }
+  .nav-links a:hover { color: var(--green); }
 
   .nav-cta {
-    background: var(--lime);
-    color: #000;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 11px 24px;
-    border-radius: 50px;
-    text-decoration: none;
+    background: var(--green); color: var(--dark);
+    border: none; padding: 10px 22px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.85rem; cursor: pointer; text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(184,255,0,0.35);
-  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,252,0,0.35); }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 120px 60px 80px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero-grid {
+  .hero-bg {
     position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(184,255,0,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(184,255,0,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,252,0,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(26,92,74,0.2) 0%, transparent 60%),
+      var(--dark);
   }
 
-  .hero-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(184,255,0,0.15) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    border-radius: 50%;
-    animation: pulseGlow 4s ease-in-out infinite alternate;
-  }
-  @keyframes pulseGlow {
-    from { opacity: 0.6; transform: scale(1); }
-    to   { opacity: 1;   transform: scale(1.08); }
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    max-width: 780px;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--lime-dim);
-    border: 1px solid var(--lime-border);
-    border-radius: 50px;
-    padding: 8px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--lime);
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(124,252,0,0.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green);
     margin-bottom: 32px;
     animation: fadeUp 0.7s ease both;
   }
-  .hero-eyebrow::before {
-    content: '';
-    width: 7px; height: 7px;
-    background: var(--lime);
-    border-radius: 50%;
-    animation: blink 1.4s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.2; }
+
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); animation: pulse 2s infinite;
   }
 
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 9vw, 110px);
-    line-height: 0.95;
-    letter-spacing: -1px;
-    margin-bottom: 28px;
-    animation: fadeUp 0.7s 0.1s ease both;
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
   }
-  .hero-title .line-accent { color: var(--lime); }
-  .hero-title .line-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--green);
+    -webkit-text-stroke: 0px;
+  }
+
+  h1 .outline {
+    -webkit-text-stroke: 2px rgba(255,255,255,0.25);
     color: transparent;
   }
 
   .hero-sub {
-    font-size: 17px;
-    color: var(--muted);
-    line-height: 1.75;
-    max-width: 520px;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.55);
+    max-width: 480px;
+    line-height: 1.6;
     margin-bottom: 44px;
-    font-weight: 300;
-    animation: fadeUp 0.7s 0.2s ease both;
-  }
-
-  .hero-actions {
-    display: flex; gap: 16px; align-items: center;
     animation: fadeUp 0.7s 0.3s ease both;
   }
 
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.7s 0.45s ease both;
+  }
+
   .btn-primary {
-    background: var(--lime);
-    color: #000;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 15px 32px;
-    border-radius: 50px;
-    text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green); color: var(--dark);
+    padding: 16px 36px; border-radius: 100px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; border: none; cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
   }
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(184,255,0,0.4);
-  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(124,252,0,0.4); }
 
   .btn-ghost {
-    color: var(--white);
-    font-size: 13px;
-    font-weight: 500;
+    background: transparent; color: var(--white);
+    padding: 16px 36px; border-radius: 100px;
+    font-weight: 500; font-size: 0.95rem;
     text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-    opacity: 0.65;
-    transition: opacity 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, color 0.2s;
   }
-  .btn-ghost:hover { opacity: 1; }
-  .btn-ghost .arrow {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-  }
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
 
   .hero-stats {
-    position: absolute;
-    right: 60px; bottom: 80px;
-    display: flex; flex-direction: column; gap: 28px;
-    z-index: 2;
-    animation: fadeUp 0.7s 0.4s ease both;
+    display: flex; gap: 48px; margin-top: 80px;
+    animation: fadeUp 0.7s 0.6s ease both;
   }
 
-  .stat-item {
-    text-align: right;
-    border-right: 2px solid var(--lime);
-    padding-right: 20px;
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--green);
+    display: block;
   }
-  .stat-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    color: var(--lime);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── MARQUEE ── */
-  .marquee-section {
-    background: var(--lime);
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-track {
-    display: inline-flex; gap: 0;
-    animation: marquee 18s linear infinite;
-  }
-  .marquee-item {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    color: #000;
-    letter-spacing: 3px;
-    padding: 0 32px;
-    display: inline-flex; align-items: center; gap: 12px;
-  }
-  .marquee-item .dot { width: 6px; height: 6px; background: rgba(0,0,0,0.35); border-radius: 50%; }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
 
-  /* ── SERVICES ── */
-  .section {
-    padding: 110px 60px;
-  }
-
-  .section-eyebrow {
-    display: inline-block;
-    color: var(--lime);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 4.5vw, 56px);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 60px;
-  }
-  .section-title em {
-    font-style: italic;
-    color: var(--lime);
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .service-card {
-    background: var(--card);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    border: 1px solid transparent;
-  }
-  .service-card:hover {
-    background: #1c1c1c;
-    border-color: var(--lime-border);
-  }
-  .service-card:hover .service-card-num { color: var(--lime); }
-  .service-card:hover .service-icon-bg { opacity: 1; }
-
-  .service-card-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: rgba(255,255,255,0.05);
-    line-height: 1;
-    position: absolute;
-    top: 24px; right: 28px;
-    transition: color 0.3s;
-  }
-
-  .service-icon-bg {
-    position: absolute;
-    bottom: -20px; right: -20px;
-    font-size: 120px;
-    opacity: 0.04;
-    transition: opacity 0.3s;
-    line-height: 1;
-  }
-
-  .service-tag {
-    display: inline-block;
-    background: var(--lime-dim);
-    border: 1px solid var(--lime-border);
-    color: var(--lime);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 4px;
-    margin-bottom: 24px;
-  }
-
-  .service-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 900;
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-
-  .service-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-    font-weight: 300;
-    margin-bottom: 28px;
-  }
-
-  .service-features {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .service-features li {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 16px;
     display: flex; align-items: center; gap: 10px;
   }
-  .service-features li::before {
-    content: '';
-    width: 16px; height: 1px;
-    background: var(--lime);
-    flex-shrink: 0;
+  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(124,252,0,0.25); max-width: 60px; }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
   }
 
-  /* ── PROCESS ── */
-  .process-section {
-    padding: 110px 60px;
-    background: var(--dark);
+  /* ── OFFERS ── */
+  #offres { background: var(--cream); color: var(--dark); }
+  #offres .section-label { color: var(--teal); }
+  #offres .section-label::after { background: rgba(26,92,74,0.3); }
+  #offres h2 { color: var(--dark); }
+
+  .offers-intro { color: rgba(10,10,10,0.55); max-width: 500px; line-height: 1.7; margin-bottom: 60px; }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .offer-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 36px;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .offer-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.12); }
+
+  .offer-card.featured {
+    background: var(--teal);
+    color: var(--white);
+    border-color: transparent;
   }
 
-  .process-bg-text {
-    position: absolute;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px;
-    color: rgba(184,255,0,0.03);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: 10px;
+  .offer-card.featured .offer-tag { background: rgba(255,255,255,0.15); color: var(--white); }
+  .offer-card.featured .offer-desc { color: rgba(255,255,255,0.65); }
+  .offer-card.featured .offer-list li { color: rgba(255,255,255,0.85); }
+  .offer-card.featured .offer-list li::before { color: var(--green); }
+  .offer-card.featured .offer-price { color: var(--white); }
+  .offer-card.featured .offer-price span { color: rgba(255,255,255,0.5); }
+
+  .offer-accent {
+    position: absolute; top: -30px; right: -30px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: var(--green); opacity: 0.08;
+  }
+
+  .offer-tag {
+    display: inline-block;
+    background: rgba(26,92,74,0.08);
+    color: var(--teal);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .offer-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .offer-desc { font-size: 0.88rem; color: rgba(10,10,10,0.5); margin-bottom: 24px; line-height: 1.6; }
+
+  .offer-list { list-style: none; margin-bottom: 32px; }
+  .offer-list li {
+    font-size: 0.88rem; color: rgba(10,10,10,0.7);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .offer-list li:last-child { border-bottom: none; }
+  .offer-list li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+  .offer-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--teal);
+  }
+  .offer-price span { font-size: 0.85rem; font-family: 'DM Sans', sans-serif; font-weight: 400; color: rgba(10,10,10,0.4); }
+
+  .offer-cta {
+    display: block; margin-top: 24px;
+    background: var(--dark); color: var(--white);
+    text-align: center; padding: 14px;
+    border-radius: 12px; text-decoration: none;
+    font-size: 0.88rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .offer-cta:hover { background: #1a1a1a; }
+
+  .offer-card.featured .offer-cta {
+    background: var(--green); color: var(--dark);
+  }
+  .offer-card.featured .offer-cta:hover { background: #a0ff00; }
+
+  /* ── PROCESS ── */
+  #processus {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
 
   .process-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    position: relative; z-index: 1;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 60px;
   }
 
   .process-step {
+    background: #111;
+    padding: 40px 28px;
     position: relative;
+    transition: background 0.3s;
   }
-  .process-step:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: -24px; top: 20px;
-    color: var(--lime);
-    font-size: 20px;
-    opacity: 0.4;
-  }
+  .process-step:hover { background: #161616; }
 
-  .step-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    color: var(--lime);
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: rgba(124,252,0,0.12);
     line-height: 1;
-    margin-bottom: 16px;
-    opacity: 0.8;
+    margin-bottom: 20px;
   }
 
   .step-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
+    font-size: 0.95rem; font-weight: 500; margin-bottom: 10px;
   }
 
-  .step-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
-  }
+  .step-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
 
-  /* ── PORTFOLIO ── */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
-    gap: 3px;
-  }
+  /* ── WHY ── */
+  #pourquoi { background: #0d0d0d; }
 
-  .portfolio-item {
-    position: relative;
-    overflow: hidden;
-    background: var(--card);
-  }
-  .portfolio-item:first-child { grid-row: 1 / 3; }
-
-  .portfolio-inner {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding: 32px;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
-    transition: opacity 0.3s;
-  }
-
-  .portfolio-mock {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 72px;
-    transition: transform 0.4s;
-  }
-  .portfolio-item:hover .portfolio-mock { transform: scale(1.08); }
-
-  .portfolio-bg-1 { background: linear-gradient(135deg, #1a1a0a, #2a3a0a); }
-  .portfolio-bg-2 { background: linear-gradient(135deg, #0a1a1a, #0a2a2a); }
-  .portfolio-bg-3 { background: linear-gradient(135deg, #1a0a1a, #2a0a3a); }
-  .portfolio-bg-4 { background: linear-gradient(135deg, #1a1000, #2a2000); }
-  .portfolio-bg-5 { background: linear-gradient(135deg, #001a0a, #002a10); }
-
-  .port-tag {
-    font-size: 10px;
-    color: var(--lime);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .port-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  /* ── WHY ME ── */
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3px;
+    gap: 60px;
+    align-items: center;
+    margin-top: 60px;
   }
 
-  .why-card {
-    background: var(--card);
-    padding: 44px 40px;
-    display: flex; gap: 24px;
-    transition: background 0.3s;
-    border: 1px solid transparent;
+  .why-text h2 { margin-bottom: 20px; }
+  .why-text p { color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 30px; }
+
+  .why-features { list-style: none; }
+  .why-features li {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    line-height: 1.5;
   }
-  .why-card:hover {
-    background: #1c1c1c;
-    border-color: var(--lime-border);
-  }
+  .why-features li:last-child { border-bottom: none; }
 
   .why-icon {
-    width: 48px; height: 48px;
-    background: var(--lime-dim);
-    border: 1px solid var(--lime-border);
-    border-radius: 12px;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(124,252,0,0.1);
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
     flex-shrink: 0;
+    font-size: 0.9rem;
   }
 
-  .why-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .why-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* ── ZONES ── */
-  .zones-section {
-    padding: 110px 60px;
-    background: var(--dark);
-    position: relative;
-  }
-
-  .flags-row {
-    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
-    margin-top: 50px;
-  }
-
-  .flag-pill {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--card);
-    border: 1px solid var(--muted2);
-    border-radius: 60px;
-    padding: 14px 24px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .flag-pill:hover {
-    border-color: var(--lime-border);
-    background: var(--lime-dim);
-  }
-
-  .flag-emoji { font-size: 24px; }
-  .flag-name {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .flag-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  /* ── CTA SECTION ── */
-  .cta-section {
-    padding: 110px 60px;
+  .why-visual {
+    background: linear-gradient(135deg, var(--teal) 0%, #0d3326 100%);
+    border-radius: 24px;
+    padding: 50px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
 
-  .cta-glow {
-    position: absolute;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(184,255,0,0.12) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    pointer-events: none;
+  .why-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(124,252,0,0.15);
   }
 
-  .cta-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 7vw, 90px);
+  .big-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900;
     line-height: 1;
-    margin-bottom: 24px;
-    position: relative; z-index: 1;
-  }
-  .cta-title span { color: var(--lime); }
-
-  .cta-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 44px;
-    line-height: 1.7;
     position: relative; z-index: 1;
   }
 
-  .cta-actions {
-    display: flex; gap: 16px; align-items: center; justify-content: center;
+  .big-logo .r { color: var(--green); font-style: italic; }
+  .big-logo .rest { color: var(--white); }
+  .big-logo .d { color: var(--green); font-size: 3rem; vertical-align: super; }
+
+  .why-visual-sub {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-top: 16px;
     position: relative; z-index: 1;
   }
 
-  .btn-big {
-    background: var(--lime);
-    color: #000;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 18px 40px;
-    border-radius: 50px;
+  .timeline-mini {
+    margin-top: 36px; position: relative; z-index: 1;
+    background: rgba(0,0,0,0.2); border-radius: 14px; padding: 20px;
+    text-align: left;
+  }
+
+  .tl-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0;
+    font-size: 0.8rem; color: rgba(255,255,255,0.65);
+  }
+
+  .tl-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
+  }
+
+  /* ── CTA SECTION ── */
+  #contact {
+    background: var(--dark);
+    text-align: center;
+    padding: 120px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(124,252,0,0.1) 0%, transparent 70%);
+  }
+
+  .cta-box {
+    max-width: 680px; margin: 0 auto; position: relative; z-index: 1;
+  }
+
+  .cta-box h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 20px; }
+  .cta-box p { color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 44px; }
+
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-whatsapp {
+    background: #25D366; color: var(--white);
+    padding: 16px 36px; border-radius: 100px;
+    font-weight: 500; font-size: 0.95rem;
     text-decoration: none;
     display: inline-flex; align-items: center; gap: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .btn-big:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 50px rgba(184,255,0,0.45);
-  }
+  .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.35); }
 
-  .btn-insta {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
+  .btn-instagram {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     color: var(--white);
-    font-weight: 600;
-    font-size: 14px;
-    padding: 18px 32px;
-    border-radius: 50px;
+    padding: 16px 36px; border-radius: 100px;
+    font-weight: 500; font-size: 0.95rem;
     text-decoration: none;
     display: inline-flex; align-items: center; gap: 10px;
-    transition: border-color 0.2s, background 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .btn-insta:hover {
-    border-color: var(--lime-border);
-    background: var(--lime-dim);
+  .btn-instagram:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(220,39,67,0.35); }
+
+  .badge-delay {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,252,0,0.1);
+    border: 1px solid rgba(124,252,0,0.25);
+    border-radius: 100px; padding: 8px 20px;
+    color: var(--green); font-size: 0.82rem;
+    margin-bottom: 40px;
   }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--muted2);
-    padding: 40px 60px;
-    display: flex; align-items: center; justify-content: space-between;
+    background: #050505;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px 24px;
+    text-align: center;
   }
 
   .footer-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .footer-logo span { color: var(--lime); }
-
-  .footer-copy {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 1px;
+    font-size: 1.5rem; font-weight: 900;
+    margin-bottom: 12px;
   }
 
-  .footer-ig {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  .footer-ig:hover { color: var(--lime); }
-  .footer-ig .ig-dot {
-    width: 8px; height: 8px;
-    background: var(--lime);
-    border-radius: 50%;
-    animation: blink 1.4s ease-in-out infinite;
-  }
+  .footer-logo .accent { color: var(--green); font-style: italic; }
+
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 18px 24px; }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    .hero { padding: 100px 24px 80px; }
-    .hero-stats { display: none; }
-    .section, .process-section, .zones-section, .cta-section { padding: 70px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .process-step::after { display: none; }
-    .portfolio-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .portfolio-item:first-child { grid-row: auto; }
+    .hero-stats { gap: 28px; }
     .why-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .offers-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo"><span>Restau</span>Design</a>
+  <a href="#" class="logo-nav">
+    <div class="logo-badge">Rᴰ</div>
+    RestauDesign
+  </a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#zones">Zones</a></li>
+    <li><a href="#offres">Offres</a></li>
+    <li><a href="#processus">Processus</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
   </ul>
-  <a href="https://instagram.com/restaudesign" class="nav-cta">Contact →</a>
+  <a href="#contact" class="nav-cta">Démarrer →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Freelance Designer — Available Now</div>
-    <h1 class="hero-title">
-      <span class="line-accent">Design</span><br>
-      <span>That Makes</span><br>
-      <span class="line-outline">Restaurants</span><br>
-      <span class="line-accent">Shine.</span>
-    </h1>
-    <p class="hero-sub">
-      Cartes menu, cartes fidélité &amp; flyers sur-mesure pour vos restaurants, cafés et fast-foods en <strong style="color:var(--white)">Europe &amp; Canada</strong>.
-    </p>
-    <div class="hero-actions">
-      <a href="https://instagram.com/restaudesign" class="btn-primary">
-        Démarrer un projet
-        <span>→</span>
-      </a>
-      <a href="#services" class="btn-ghost">
-        <span class="arrow">↓</span>
-        Voir les services
-      </a>
-    </div>
+  <div class="hero-bg"></div>
+  <div class="hero-tag">Agence Design Restaurants · France</div>
+  <h1>
+    Transformez<br>
+    <em>votre</em> <span class="outline">Restaurant</span>
+  </h1>
+  <p class="hero-sub">
+    Le design professionnel qui augmente votre visibilité et booste vos ventes. Menus, branding, réseaux sociaux — livré en 2 à 5 jours.
+  </p>
+  <div class="hero-actions">
+    <a href="#offres" class="btn-primary">Voir nos offres ↓</a>
+    <a href="#contact" class="btn-ghost">Envoyer un DM</a>
   </div>
   <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-number">3+</div>
-      <div class="stat-label">Services</div>
+    <div class="stat">
+      <span class="stat-num">79€</span>
+      <span class="stat-label">Pack Starter</span>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">48h</div>
-      <div class="stat-label">Livraison</div>
+    <div class="stat">
+      <span class="stat-num">2-5j</span>
+      <span class="stat-label">Délai livraison</span>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Custom</div>
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Packs disponibles</span>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track" id="marquee">
-    <span class="marquee-item">CARTE MENU <span class="dot"></span></span>
-    <span class="marquee-item">CARTE FIDÉLITÉ <span class="dot"></span></span>
-    <span class="marquee-item">FLYER <span class="dot"></span></span>
-    <span class="marquee-item">RESTAURANTS <span class="dot"></span></span>
-    <span class="marquee-item">CAFÉS <span class="dot"></span></span>
-    <span class="marquee-item">FAST-FOOD <span class="dot"></span></span>
-    <span class="marquee-item">EUROPE &amp; CANADA <span class="dot"></span></span>
-    <span class="marquee-item">DESIGN UNIQUE <span class="dot"></span></span>
-    <span class="marquee-item">CARTE MENU <span class="dot"></span></span>
-    <span class="marquee-item">CARTE FIDÉLITÉ <span class="dot"></span></span>
-    <span class="marquee-item">FLYER <span class="dot"></span></span>
-    <span class="marquee-item">RESTAURANTS <span class="dot"></span></span>
-    <span class="marquee-item">CAFÉS <span class="dot"></span></span>
-    <span class="marquee-item">FAST-FOOD <span class="dot"></span></span>
-    <span class="marquee-item">EUROPE &amp; CANADA <span class="dot"></span></span>
-    <span class="marquee-item">DESIGN UNIQUE <span class="dot"></span></span>
-  </div>
-</div>
+<!-- OFFERS -->
+<section id="offres">
+  <div class="container">
+    <div class="section-label">Nos Offres Spéciales</div>
+    <h2>Choisissez votre<br><em>pack idéal</em></h2>
+    <p class="offers-intro">Des solutions adaptées à chaque budget, pour tous les restaurants — du café de quartier au restaurant gastronomique.</p>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="section-eyebrow">✦ What I Offer</div>
-  <h2 class="section-title">Mes <em>services</em><br>à la carte.</h2>
-  <div class="services-grid">
+    <div class="offers-grid">
 
-    <div class="service-card">
-      <div class="service-card-num">01</div>
-      <div class="service-icon-bg">🍽</div>
-      <div class="service-tag">Best Seller</div>
-      <div class="service-name">Carte<br>Menu</div>
-      <p class="service-desc">Un menu qui donne envie de commander avant même d'entrer. Design élégant, lisible et mémorable.</p>
-      <ul class="service-features">
-        <li>Format A4 / A5 / Ardoise digitale</li>
-        <li>Typographie & mise en page pro</li>
-        <li>Fichier print-ready PDF</li>
-        <li>Révisions illimitées</li>
-      </ul>
+      <!-- Pack Starter -->
+      <div class="offer-card">
+        <div class="offer-accent"></div>
+        <span class="offer-tag">Le plus populaire</span>
+        <h3>Pack Starter</h3>
+        <p class="offer-desc">Tout le nécessaire pour donner une image professionnelle à votre restaurant.</p>
+        <ul class="offer-list">
+          <li>Carte Menu (design professionnel)</li>
+          <li>Flyer promotionnel A5</li>
+          <li>Carte fidélité</li>
+          <li>QR Code Menu digital</li>
+          <li>2 révisions incluses</li>
+          <li>50% début / 50% livraison</li>
+        </ul>
+        <div class="offer-price">79€ <span>paiement fractionné</span></div>
+        <a href="#contact" class="offer-cta">Commencer maintenant →</a>
+      </div>
+
+      <!-- Pack Instagram -->
+      <div class="offer-card featured">
+        <div class="offer-accent"></div>
+        <span class="offer-tag">Abonnement mensuel</span>
+        <h3>Pack Instagram</h3>
+        <p class="offer-desc">Boost votre présence sur les réseaux sociaux avec du contenu visuel mensuel de qualité.</p>
+        <ul class="offer-list">
+          <li>Posts Instagram hebdomadaires</li>
+          <li>Designs promotions &amp; offres</li>
+          <li>Contenu visuel mensuel</li>
+          <li>1 révision par design</li>
+          <li>Paiement mensuel à l'avance</li>
+        </ul>
+        <div class="offer-price">50–80€<span>/mois</span></div>
+        <a href="#contact" class="offer-cta">Souscrire →</a>
+      </div>
+
+      <!-- Pack Brand Premium -->
+      <div class="offer-card">
+        <div class="offer-accent"></div>
+        <span class="offer-tag">Identité complète</span>
+        <h3>Pack Brand Premium</h3>
+        <p class="offer-desc">Une identité visuelle cohérente et mémorable pour démarquer votre restaurant.</p>
+        <ul class="offer-list">
+          <li>Logo professionnel</li>
+          <li>Identité visuelle complète</li>
+          <li>Menu board design</li>
+          <li>Packaging design (option)</li>
+          <li>3 révisions incluses</li>
+          <li>30% début / 70% fin</li>
+        </ul>
+        <div class="offer-price">150–350€ <span>selon projet</span></div>
+        <a href="#contact" class="offer-cta">Demander un devis →</a>
+      </div>
+
     </div>
-
-    <div class="service-card">
-      <div class="service-card-num">02</div>
-      <div class="service-icon-bg">💳</div>
-      <div class="service-tag">Fidélisation</div>
-      <div class="service-name">Carte<br>Fidélité</div>
-      <p class="service-desc">Faites revenir vos clients avec une carte fidélité à l'image de votre établissement.</p>
-      <ul class="service-features">
-        <li>Format carte standard (85×54mm)</li>
-        <li>Recto / Verso</li>
-        <li>Recto seul disponible</li>
-        <li>Impression-ready</li>
-      </ul>
-    </div>
-
-    <div class="service-card">
-      <div class="service-card-num">03</div>
-      <div class="service-icon-bg">📄</div>
-      <div class="service-tag">Promotion</div>
-      <div class="service-name">Flyer<br>Promo</div>
-      <p class="service-desc">Annoncez vos promos, événements & plats du jour avec un flyer accrocheur qui se démarque.</p>
-      <ul class="service-features">
-        <li>Format A5 / A6 / Carré</li>
-        <li>Version digitale + print</li>
-        <li>Adapté réseaux sociaux</li>
-        <li>Livraison rapide 24–48h</li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
 <!-- PROCESS -->
-<section class="process-section" id="process">
-  <div class="process-bg-text">PROCESS</div>
-  <div style="position:relative;z-index:1">
-    <div class="section-eyebrow">✦ How It Works</div>
-    <h2 class="section-title" style="margin-bottom:70px">Simple.<br><em>Rapide.</em> Efficace.</h2>
+<section id="processus">
+  <div class="container">
+    <div class="section-label">Notre Processus</div>
+    <h2>Simple, rapide,<br><em>efficace</em></h2>
+
     <div class="process-grid">
       <div class="process-step">
-        <div class="step-number">01</div>
-        <div class="step-title">You DM Me</div>
-        <p class="step-desc">Envoyez-moi un message Instagram avec vos infos : nom, type d'établissement, style souhaité.</p>
+        <div class="step-num">01</div>
+        <div class="step-title">Paiement acompte</div>
+        <p class="step-desc">30% ou 50% selon le pack choisi. Aucun travail ne commence sans acompte.</p>
       </div>
       <div class="process-step">
-        <div class="step-number">02</div>
-        <div class="step-title">Brief & Devis</div>
-        <p class="step-desc">Je vous envoie un devis clair et personnalisé. Pas de mauvaises surprises.</p>
+        <div class="step-num">02</div>
+        <div class="step-title">Brief client détaillé</div>
+        <p class="step-desc">On échange sur votre vision, vos couleurs, votre cible et votre identité.</p>
       </div>
       <div class="process-step">
-        <div class="step-number">03</div>
-        <div class="step-title">Design</div>
-        <p class="step-desc">Je crée votre design sur-mesure. Premier aperçu sous 24–48h avec révisions incluses.</p>
+        <div class="step-num">03</div>
+        <div class="step-title">Première proposition</div>
+        <p class="step-desc">Vous recevez une première maquette design pour validation.</p>
       </div>
       <div class="process-step">
-        <div class="step-number">04</div>
-        <div class="step-title">Livraison</div>
-        <p class="step-desc">Fichiers haute résolution prêts à imprimer ou publier. Format PDF, PNG, JPEG.</p>
+        <div class="step-num">04</div>
+        <div class="step-title">Révisions</div>
+        <p class="step-desc">Ajustements selon votre pack (révisions supplémentaires : 10–20€).</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div class="step-title">Livraison finale</div>
+        <p class="step-desc">Fichiers livrés après paiement complet. Délai : 2 à 5 jours.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section" id="portfolio">
-  <div class="section-eyebrow">✦ Portfolio</div>
-  <h2 class="section-title" style="margin-bottom:40px">Quelques <em>réalisations</em>.</h2>
-  <div class="portfolio-grid">
+<!-- WHY -->
+<section id="pourquoi">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-text">
+        <div class="section-label">Pourquoi RestauDesign</div>
+        <h2>Design = <em>ventes</em><br>augmentées</h2>
+        <p>Un restaurant avec une identité visuelle forte inspire confiance et fidélise sa clientèle. Nous créons des designs pensés spécifiquement pour booster vos ventes.</p>
+        <ul class="why-features">
+          <li>
+            <span class="why-icon">⚡</span>
+            Livraison rapide en 2 à 5 jours ouvrés
+          </li>
+          <li>
+            <span class="why-icon">🎯</span>
+            Spécialisés exclusivement dans la restauration
+          </li>
+          <li>
+            <span class="why-icon">💰</span>
+            Prix accessibles, qualité professionnelle
+          </li>
+          <li>
+            <span class="why-icon">🔄</span>
+            Révisions incluses selon votre pack
+          </li>
+          <li>
+            <span class="why-icon">📱</span>
+            Formats adaptés print &amp; digital
+          </li>
+        </ul>
+      </div>
 
-    <div class="portfolio-item portfolio-bg-1">
-      <div class="portfolio-mock">🍔</div>
-      <div class="portfolio-inner">
-        <div class="port-tag">Carte Menu</div>
-        <div class="port-title">Fast-Food Moderne</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-bg-2">
-      <div class="portfolio-mock">☕</div>
-      <div class="portfolio-inner">
-        <div class="port-tag">Carte Menu</div>
-        <div class="port-title">Café Parisien</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-bg-3">
-      <div class="portfolio-mock">💳</div>
-      <div class="portfolio-inner">
-        <div class="port-tag">Carte Fidélité</div>
-        <div class="port-title">Snack Montréal</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-bg-4">
-      <div class="portfolio-mock">🍕</div>
-      <div class="portfolio-inner">
-        <div class="port-tag">Flyer Promo</div>
-        <div class="port-title">Pizzeria Lyon</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-bg-5">
-      <div class="portfolio-mock">🥗</div>
-      <div class="portfolio-inner">
-        <div class="port-tag">Carte Menu</div>
-        <div class="port-title">Healthy Bowl</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY ME -->
-<section style="padding: 0 60px 110px;">
-  <div class="section-eyebrow">✦ Why RestauDesign</div>
-  <h2 class="section-title">Pourquoi me<br><em>choisir ?</em></h2>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div>
-        <div class="why-title">Livraison Rapide</div>
-        <p class="why-desc">Vos fichiers livrés en 24 à 48h. Parce que votre temps est précieux et votre resto ne peut pas attendre.</p>
-      </div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🎨</div>
-      <div>
-        <div class="why-title">100% Sur-Mesure</div>
-        <p class="why-desc">Aucun template générique. Chaque design est créé spécialement pour vous et votre identité.</p>
-      </div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🖨</div>
-      <div>
-        <div class="why-title">Print-Ready</div>
-        <p class="why-desc">Fichiers haute résolution prêts à envoyer à l'imprimerie. Zéro retouche nécessaire.</p>
-      </div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🔄</div>
-      <div>
-        <div class="why-title">Révisions Incluses</div>
-        <p class="why-desc">Pas satisfait du premier jet ? On retravaille jusqu'à ce que vous soyez 100% satisfait.</p>
+      <div class="why-visual">
+        <div class="big-logo">
+          <span class="r">R</span><span class="rest">estau</span><span class="d">D</span>
+        </div>
+        <div class="why-visual-sub">Restaurant Design Agency · France</div>
+        <div class="timeline-mini">
+          <div class="tl-item"><span class="tl-dot"></span>Brief → Maquette → Livraison</div>
+          <div class="tl-item"><span class="tl-dot"></span>Délai garanti : 2–5 jours</div>
+          <div class="tl-item"><span class="tl-dot"></span>Paiement sécurisé fractionné</div>
+          <div class="tl-item"><span class="tl-dot"></span>Support disponible par DM</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ZONES -->
-<section class="zones-section" id="zones">
-  <div class="section-eyebrow">✦ Service Area</div>
-  <h2 class="section-title">Je travaille<br><em>partout.</em></h2>
-  <div class="flags-row">
-    <div class="flag-pill">
-      <img src="https://flagcdn.com/w40/fr.png" width="30" alt="France">
-      <div>
-        <div class="flag-name">France</div>
-        <div class="flag-sub">Paris, Lyon, Marseille…</div>
-      </div>
-    </div>
-    <div class="flag-pill">
-      <img src="https://flagcdn.com/w40/be.png" width="30" alt="Belgique">
-      <div>
-        <div class="flag-name">Belgique</div>
-        <div class="flag-sub">Bruxelles, Liège…</div>
-      </div>
-    </div>
-    <div class="flag-pill">
-      <img src="https://flagcdn.com/w40/ch.png" width="30" alt="Suisse">
-      <div>
-        <div class="flag-name">Suisse</div>
-        <div class="flag-sub">Genève, Lausanne…</div>
-      </div>
-    </div>
-    <div class="flag-pill">
-      <img src="https://flagcdn.com/w40/ca.png" width="30" alt="Canada">
-      <div>
-        <div class="flag-name">Canada</div>
-        <div class="flag-sub">Montréal, Québec…</div>
-      </div>
-    </div>
-    <div class="flag-pill">
-      <span style="font-size: 24px;">🌍</span>
-      <div>
-        <div class="flag-name">Autres pays</div>
-        <div class="flag-sub">Livraison 100% digitale</div>
-      </div>
-    </div>
-</div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
-  <div class="cta-glow"></div>
-  <h2 class="cta-title">
-    Ready to<br><span>Stand Out?</span>
-  </h2>
-  <p class="cta-sub">
-    Envoyez-moi un DM sur Instagram et parlons de votre projet. Devis gratuit sous 2h.
-  </p>
-  <div class="cta-actions">
-    <a href="https://instagram.com/restaudesign" class="btn-big">
-      📩 DM sur Instagram
-    </a>
-    <a href="https://instagram.com/restaudesign" class="btn-insta">
-      @restaudesign
-    </a>
+<section id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-box">
+    <div class="badge-delay">⏱ Délai : 2–5 jours · Prêt à booster vos ventes ?</div>
+    <h2>Commencez <em>votre projet</em> aujourd'hui</h2>
+    <p>Envoyez-nous un message directement sur Instagram ou WhatsApp. Nous répondons rapidement et établissons votre devis sous 24h.</p>
+    <div class="cta-actions">
+      <a href="https://instagram.com" class="btn-instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Envoyer un DM
+      </a>
+      <a href="https://wa.me/" class="btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><span>Restau</span>Design</div>
-  <div class="footer-copy">© 2025 RestauDesign — All rights reserved</div>
-  <a href="https://instagram.com/restaudesign" class="footer-ig">
-    <span class="ig-dot"></span>
-    @restaudesign
-  </a>
+  <div class="footer-logo"><span class="accent">Restau</span>Design</div>
+  <p>© 2026 RestauDesign · Agence spécialisée design pour restaurants · France</p>
 </footer>
 
-<script>
-  // Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-  });
-
-  function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
-      ring.style.opacity = '0';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      ring.style.opacity = '0.5';
-    });
-  });
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.service-card, .process-step, .why-card, .portfolio-item, .flag-pill').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, background 0.3s, border-color 0.3s';
-    observer.observe(el);
-  });
-</script>
 </body>
 </html>
